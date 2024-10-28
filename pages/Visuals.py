@@ -158,9 +158,21 @@ sns.barplot(x='book_title', y='Explicit_Count', data=explicit_counts, palette='R
 ax.set_xlabel('')
 ax.set_ylabel('Number of Explicit Reviews')
 ax.set_title('Explicit Reviews per Book Title')
-ax.set_xticks([])  # X-axis labels were removed because 
+ax.set_xticks([])  # X-axis labels were removed because too messy otherwise
 st.pyplot(fig)
 
 st.caption("Shows the number of explicit reviews associated with each book.")
+
+# Plotting
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.barplot(x='book_title', y='Explicit_Count', data=top_explicit_counts, palette='Reds', ax=ax)  # Use top_explicit_counts here
+
+ax.set_xlabel('')
+ax.set_ylabel('Number of Explicit Reviews')
+ax.set_title('Top 10 Books with Explicit Reviews')
+ax.set_xticklabels(top_explicit_counts['book_title'], rotation=45, ha='right')  # Rotate labels for better readability
+st.pyplot(fig)
+
+st.caption("Top 10 Spiciest Books")
 
 ##################################
