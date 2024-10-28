@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import requests
-from spiceglass import important_features, X_train, X_test, y_train, y_test, results, best_model, df, explicit_words
+from model import important_features, X_train, X_test, y_train, y_test, results, best_model, df, explicit_words
 from nltk.stem import PorterStemmer
 
 st.title("Data visualisation")
