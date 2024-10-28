@@ -142,7 +142,7 @@ stopwords_list = requests.get(
 stopwords = set(stopwords_list.decode().splitlines()) 
 
 # Additional stopwords
-additional_stopwords = {'book', 'books', 'dont', 'didnt', 'doesnt', 'read', 'Ive'}
+additional_stopwords = {'book', 'books', 'dont', 'didnt', 'doesnt', 'read', 'Ive', 'ill', 'isnt'}
 stopwords.update(additional_stopwords)
 
 # Cleaning reviews by filtering out stopwords
