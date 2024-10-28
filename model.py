@@ -245,7 +245,7 @@ def calculate_spiciness(review, weights):
 
 # Creating weights from important features 
 words_to_drop = ['love', 'people'] 
-weights = {word: weight * 115 for word, weight in important_features if word not in words_to_drop}
+weights = {word: weight * 130 for word, weight in important_features if word not in words_to_drop}
 
 # Applying the function to each review and storing the result in a new column
 df['spiciness_score'] = df['reviews'].apply(lambda review: calculate_spiciness(review, weights))
