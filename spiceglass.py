@@ -1,5 +1,7 @@
 ### STREAMLIT APP ### 
 
+import streamlit as st
+
 # Streamlit page set up        
 search_page = st.Page(
     page = "pages/Search.py",
