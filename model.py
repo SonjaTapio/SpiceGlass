@@ -48,7 +48,7 @@ book_title_mapping = {
     216657877: "Passenger Princess",
     75513900: "Powerless",
     61242426: "Legends & Lattes",
-    6294: "Howl’s Moving Castle", 
+    6294: "Howl's Moving Castle", 
     157993: "The Little Prince", 
     18144590: "The Alchemist",
     10818853: "Fifty Shades of Grey",
