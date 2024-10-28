@@ -106,6 +106,7 @@ explicit_counts = explicit_counts.reset_index(name='Explicit_Count')
 # Sorting by 'Explicit_Count' for top 10 books
 top_explicit_counts = explicit_counts.sort_values(by='Explicit_Count', ascending=False).head(10)
 
+# ALL BOOKS
 fig, ax = plt.subplots(figsize=(10, 6))
 sns.barplot(x='book_title', y='Explicit_Count', data=explicit_counts, palette='Reds', ax=ax)
 
@@ -117,9 +118,9 @@ st.pyplot(fig)
 
 st.caption("Shows the number of explicit reviews associated with each book.")
 
-# Plotting
+# TOP 10 BOOKS 
 fig, ax = plt.subplots(figsize=(10, 6))
-sns.barplot(x='book_title', y='Explicit_Count', data=top_explicit_counts, palette='Reds', ax=ax)  # Use top_explicit_counts here
+sns.barplot(x='book_title', y='Explicit_Count', data=top_explicit_counts, palette='Reds_r', ax=ax)  # Use top_explicit_counts here
 
 ax.set_xlabel('')
 ax.set_ylabel('Number of Explicit Reviews')
