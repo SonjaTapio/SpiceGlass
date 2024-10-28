@@ -79,52 +79,6 @@ st.markdown("\n\n")
 
 ###################################
 
-###### WORDCLOUDS #######
-
-st.subheader("WordClouds")
-
-from wordcloud import WordCloud
-
-### EXPLICIT REVIEWS ###
-
-ps = PorterStemmer() 
-df["reviews"] = df["reviews"].apply(lambda x: ' '.join([ps.stem(word) for word in str(x).split()]))
-
-explicit_reviews = df[df['label'] == 'Explicit']['reviews']
-
-# Combining all explicit reviews into a single string
-explicit_text = ' '.join(explicit_reviews)
-
-fig, ax = plt.subplots(figsize=(10, 6))
-wordcloud = WordCloud(width=800, height=400, background_color='white', colormap="Reds").generate(explicit_text)
-ax.imshow(wordcloud, interpolation='bilinear')
-ax.axis('off')  # Turn off the axis
-ax.set_title('Word Cloud of Explicit Reviews', fontsize=16)  # Add a title
-st.pyplot(fig)
-
-st.caption("Highlights commonly occuring words within explicit reviews. Frequenlty used words are larger.")
-st.markdown("\n\n")
-
-####################################
-
-
-### INEXPLICIT REVIEWS ###
-
-inexplicit_reviews = df[df['label'] == 'Not Explicit']['reviews']
-inexplicit_text = ' '.join(inexplicit_reviews)
-
-wordcloud = WordCloud(width=800, height=400, background_color='white', colormap='Blues').generate(inexplicit_text)
-fig, ax = plt.subplots(figsize=(10, 6))
-ax.imshow(wordcloud, interpolation='bilinear')
-ax.axis('off')  # Turn off the axis
-ax.set_title('Word Cloud of Inexplicit Reviews', fontsize=16)  # Add a title
-st.pyplot(fig)
-
-st.caption("Highlights commonly occuring words within inexplicit reviews. Frequenlty used words are larger.")
-st.markdown("\n\n")
-
-###################################
-
 
 ### EXPLICIT REVIEWS PER BOOK TITLE ###
 
@@ -176,3 +130,49 @@ st.pyplot(fig)
 st.caption("Top 10 Spiciest Books")
 
 ##################################
+
+###### WORDCLOUDS #######
+
+st.subheader("WordClouds")
+
+from wordcloud import WordCloud
+
+### EXPLICIT REVIEWS ###
+
+ps = PorterStemmer() 
+df["reviews"] = df["reviews"].apply(lambda x: ' '.join([ps.stem(word) for word in str(x).split()]))
+
+explicit_reviews = df[df['label'] == 'Explicit']['reviews']
+
+# Combining all explicit reviews into a single string
+explicit_text = ' '.join(explicit_reviews)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+wordcloud = WordCloud(width=800, height=400, background_color='white', colormap="Reds").generate(explicit_text)
+ax.imshow(wordcloud, interpolation='bilinear')
+ax.axis('off')  # Turn off the axis
+ax.set_title('Word Cloud of Explicit Reviews', fontsize=16)  # Add a title
+st.pyplot(fig)
+
+st.caption("Highlights commonly occuring words within explicit reviews. Frequenlty used words are larger.")
+st.markdown("\n\n")
+
+####################################
+
+
+### INEXPLICIT REVIEWS ###
+
+inexplicit_reviews = df[df['label'] == 'Not Explicit']['reviews']
+inexplicit_text = ' '.join(inexplicit_reviews)
+
+wordcloud = WordCloud(width=800, height=400, background_color='white', colormap='Blues').generate(inexplicit_text)
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.imshow(wordcloud, interpolation='bilinear')
+ax.axis('off')  # Turn off the axis
+ax.set_title('Word Cloud of Inexplicit Reviews', fontsize=16)  # Add a title
+st.pyplot(fig)
+
+st.caption("Highlights commonly occuring words within inexplicit reviews. Frequenlty used words are larger.")
+st.markdown("\n\n")
+
+###################################
