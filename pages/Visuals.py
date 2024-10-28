@@ -71,6 +71,9 @@ from wordcloud import WordCloud
 
 ### EXPLICIT REVIEWS ###
 
+ps = PorterStemmer() 
+df["reviews"] = df["reviews"].apply(lambda x: ' '.join([ps.stem(word) for word in str(x).split()]))
+
 explicit_reviews = df[df['label'] == 'Explicit']['reviews']
 
 # Combining all explicit reviews into a single string
