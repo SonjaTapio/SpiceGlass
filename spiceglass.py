@@ -1,7 +1,5 @@
 """SpiceGlass"""
 
-### NB: GRAPHS AT THE BOTTOM ###
-
 # Import libraries 
 import numpy as np
 import pandas as pd
@@ -15,7 +13,8 @@ from sklearn.model_selection import train_test_split
 
 ### CREATING THE DATA FRAME ###
 
-df = pd.read_csv("spicy_df.csv")
+filepath = "spicy_df.csv"
+df = pd.read_csv(filepath)
 df = df.drop("rating", axis=1)
 
 # Book title library 
@@ -142,7 +141,7 @@ stopwords_list = requests.get(
 stopwords = set(stopwords_list.decode().splitlines()) 
 
 # Additional stopwords
-additional_stopwords = {'book', 'books', 'dont', 'didnt', 'doesnt', 'read', 'write', 'ive', 'ill', 'isnt'}
+additional_stopwords = {'book', 'books', 'dont', 'didnt', 'doesnt', 'read', 'Ive'}
 stopwords.update(additional_stopwords)
 
 # Cleaning reviews by filtering out stopwords
@@ -292,21 +291,31 @@ average_spiciness_per_book['emoji'], average_spiciness_per_book['description'] =
 
 ### STREAMLIT ### 
 
-st.image("SpiceGlass.png", use_column_width=True)
-# Streamlit app title
-#st.title("SpiceGlass")
+# Streamlit page set up        
+search_page = st.Page(
+    page = "pages/Search.py",
+    title = "Search",
+    icon = ":material/search:", 
+    default = True,
+)
 
-book_title = st.text_input("Enter book title:")
+visuals_page = st.Page(
+    page = "pages/Visuals.py",
+    title = "Visuals",
+    icon = ":material/bar_chart:",
+)
 
-if book_title:
-    # Searching for the book in the DataFrame
-    result = average_spiciness_per_book[
-        average_spiciness_per_book['book_title'].str.contains(book_title, case=False)
-    ]
+contact_page = st.Page(
+    page = "pages/Contact.py",
+    title = "Contact",
+    icon = ":material/email:",
+)
 
-    if not result.empty:
-        book_info = result.iloc[0]
-        st.write(f"{book_info['book_title']} is: {book_info['emoji']} {book_info['description']}")
-    else:
-        book_title = book_title.title()
-        st.write(f"Sorry, '{book_title}' hasn't yet been added to our database.")
+pg = st.navigation(pages=[search_page, visuals_page, contact_page])
+
+# Putting the logo in the corner
+st.logo("assets/spiceglass_logo_r.png")
+
+pg.run()
+
+#######################################
