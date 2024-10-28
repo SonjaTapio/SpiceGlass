@@ -11,6 +11,20 @@ st.title("Data visualisation")
 st.markdown("Below are graphs visualising our data in different ways.")
 st.markdown("\n\n")
 
+df['reviews'] = df['reviews'].str.replace(r'[^\w\s🌶️🫦🔥]+', '', regex=True)
+# Removing stopwords
+stopwords_list = requests.get(
+    "https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw/12d899b70156fd0041fa9778d657330b024b959c/stopwords.txt"
+).content
+stopwords = set(stopwords_list.decode().splitlines()) 
+
+# Additional stopwords
+additional_stopwords = {'book', 'books', 'dont', 'didnt', 'doesnt', 'read', 'write', 'ive', 'ill', 'isnt'}
+stopwords.update(additional_stopwords)
+
+# Cleaning reviews by filtering out stopwords
+df['reviews'] = df['reviews'].apply(lambda x: ' '.join([word for word in str(x).split() if word.lower() not in stopwords]))
+
 ### ACCURACY & CLASSIFICATION REPORT ### 
 
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
