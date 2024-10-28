@@ -8,6 +8,8 @@ This app was developed as a part of a Introduction to Data Science course, with 
 
 The results are presented using streamlit. The user types in the title of the book and the app gives it a spiciness rating of one to five chilli peppers, along with a short description of what it means. Currently, the app only works with the 100 books that have been added to the database. For all other book titles, the app prints out the message “Sorry, [book title] hasn’t yet been added to our database.”
 
+Try out SpiceGlass for yourself [here](https://spiceglass.streamlit.app/)! 
+
 ## Data collection:
 
 We used RStudio’s Goodreader library to scrape 30 reviews of 100 books. The data was saved as a CSV file and exported to Python. The dataframe includes book id (book_id), the book title (book_title) and review text (reviews). No data was collected from copyrighted material.
