@@ -244,7 +244,7 @@ def calculate_spiciness(review, weights):
     return round(normalized_score, 1)
 
 # Creating weights from important features 
-words_to_drop = ['love'] 
+words_to_drop = ['love', 'people'] 
 weights = {word: weight * 115 for word, weight in important_features if word not in words_to_drop}
 
 # Applying the function to each review and storing the result in a new column
